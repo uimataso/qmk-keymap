@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF_] = LAYOUT(
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    MAGIC,   KC_Y,    KC_SCLN,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
-        KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_DOT,  KC_QUOT,
+        KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
                                    XXXXXXX, NAV_SPC,      SYM_ENT, XXXXXXX
     ),
 
@@ -148,7 +148,7 @@ const uint16_t PROGMEM def_caps[]   = {HM_R, HM_T, COMBO_END};
 const uint16_t PROGMEM def_coln[]   = {MAGIC, KC_Y, COMBO_END};
 const uint16_t PROGMEM def_scln[]   = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM def_exlm[]   = {KC_H, KC_U, COMBO_END};
-const uint16_t PROGMEM def_ques[]   = {KC_U, KC_DOT, COMBO_END};
+const uint16_t PROGMEM def_ques[]   = {KC_U, KC_COMM, COMBO_END};
 
 const uint16_t PROGMEM def_wm[]     = {HM_R, HM_S, HM_T, COMBO_END};
 const uint16_t PROGMEM def_numpad[] = {HM_N, HM_E, HM_I, COMBO_END};
@@ -224,7 +224,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
 #include "features/custom_shift_keys.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
-    {KC_DOT,  KC_COMM}, // Shift . is ,
+    {KC_COMM, KC_QUOT}, // Shift , is '
+    {KC_DOT,  KC_DQUO}, // Shift . is "
     {KC_UNDS, KC_SLSH}, // Shift _ is /
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
