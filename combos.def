@@ -1,0 +1,86 @@
+COMB(DEFAULT_COMBO_START,  XXXXXXX,  XXXXXXX)
+COMB(DEF_Q,        KC_Q,                    KC_W, KC_F)
+COMB(DEF_Z,        KC_Z,                    KC_C, KC_D)
+
+COMB(DEF_BS,       KC_BSPC,                 HM_N, HM_E)
+COMB(DEF_ESC,      KC_ESC,                  HM_T, HM_S)
+COMB(DEF_TAB,      KC_TAB,                  KC_F, KC_P)
+COMB(DEF_DEL,      KC_DEL,                  KC_M, HM_N)
+COMB(DEF_INS,      KC_INS,                  HM_T, KC_G)
+COMB(DEF_CAPS,     QK_CAPS_WORD_TOGGLE,     HM_R, HM_T)
+
+COMB(DEF_COLN,     KC_COLN,                 MAGIC, KC_Y)
+COMB(DEF_SCLN,     KC_SCLN,                 KC_X, KC_C)
+COMB(DEF_EXLM,     KC_EXLM,                 KC_H, KC_U)
+COMB(DEF_QUES,     KC_QUES,                 KC_U, KC_COMM)
+COMB(DEF_DOT,      KC_DOT,                  HM_E, HM_I)
+COMB(DEF_SLSH,     KC_SLSH,                 HM_R, HM_S)
+
+COMB(DEF_WM,       OSL(_WM_),               HM_R, HM_S, HM_T)
+COMB(DEF_NUMPAD,   TG(_NUMP_),              HM_N, HM_E, HM_I)
+
+COMB(SYM_DLR,      KC_DLR,                  KC_1, KC_RBRC)
+COMB(SYM_HASH,     KC_HASH,                 KC_0, KC_RPRN)
+COMB(SYM_AMPR,     KC_AMPR,                 KC_7, KC_8)
+COMB(SYM_PIPE,     KC_PIPE,                 KC_8, KC_9)
+COMB(SYM_BSLS,     KC_BSLS,                 KC_2, KC_3)
+
+COMB(SYM_NEQL,     CB_NEQL,                 KC_EQL, KC_RCBR)
+
+COMB(SYM_PAN,      CB_PAN,                  KC_LPRN, KC_RPRN)
+COMB(SYM_BRC,      CB_BRC,                  KC_LBRC, KC_RBRC)
+COMB(SYM_CBR,      CB_CBR,                  KC_LCBR, KC_RCBR)
+COMB(SYM_ABK,      CB_ABK,                  KC_LABK, KC_RABK)
+
+COMB(DEFAULT_COMBO_END,  XXXXXXX,  XXXXXXX)
+
+COMB(ONE_HAND_COMBO_START,  XXXXXXX,  XXXXXXX)
+
+COMB(OHA_H,        KC_H,                    KC_I, KC_O)
+COMB(OHA_L,        KC_L,                    KC_T, KC_I)
+COMB(OHA_C,        KC_C,                    KC_T, KC_O)
+COMB(OHA_S,        KC_S,                    KC_N, KC_E)
+COMB(OHA_R,        KC_R,                    KC_A, KC_N)
+COMB(OHA_D,        KC_D,                    KC_A, KC_E)
+
+COMB(OHA_SW,       OSL(_OHB_),              KC_T, KC_I, KC_O)
+
+COMB(OHA_SPC,      KC_SPC,                  KC_A, KC_N, KC_E)
+COMB(OHA_BS,       KC_BSPC,                 KC_I, KC_E)
+COMB(OHA_ESC,      KC_ESC,                  KC_A, KC_I, KC_O)
+COMB(OHA_TAB,      KC_TAB,                  KC_A, KC_N, KC_O)
+COMB(OHA_ENTER,    KC_ENT,                  KC_O, KC_E)
+
+COMB(OHA_SFT,      OSM(MOD_LSFT),           KC_T, KC_I, KC_E)
+COMB(OHA_CTL,      OSM(MOD_LCTL),           KC_T, KC_E)
+COMB(OHA_GUI,      OSM(MOD_LGUI),           KC_T, KC_N, KC_E)
+COMB(OHA_ALT,      OSM(MOD_LALT),           KC_T, KC_N)
+
+COMB(OHB_G,        KC_G,                    KC_M, KC_U)
+COMB(OHB_P,        KC_P,                    KC_F, KC_M)
+COMB(OHB_V,        KC_V,                    KC_F, KC_U)
+COMB(OHB_K,        KC_K,                    KC_B, KC_W)
+COMB(OHB_J,        KC_J,                    KC_Y, KC_B)
+COMB(OHB_X,        KC_X,                    KC_Y, KC_W)
+COMB(OHB_Q,        KC_Q,                    KC_Y, KC_B, KC_W)
+COMB(OHB_Z,        KC_Z,                    KC_M, KC_W)
+
+COMB(OHB_2DEF,     TO_DEF,                  KC_F, KC_Y)
+
+COMB(TIP_F,        KC_F,                    KC_SPC, KC_T)
+COMB(TIP_M,        KC_M,                    KC_SPC, KC_I)
+COMB(TIP_U,        KC_U,                    KC_SPC, KC_O)
+COMB(TIP_Y,        KC_Y,                    KC_SPC, KC_A)
+COMB(TIP_B,        KC_B,                    KC_SPC, KC_N)
+COMB(TIP_W,        KC_W,                    KC_SPC, KC_E)
+
+COMB(TIP_G,        KC_G,                    KC_SPC, KC_I, KC_O)
+COMB(TIP_P,        KC_P,                    KC_SPC, KC_T, KC_I)
+COMB(TIP_V,        KC_V,                    KC_SPC, KC_T, KC_O)
+COMB(TIP_K,        KC_K,                    KC_SPC, KC_N, KC_E)
+COMB(TIP_J,        KC_J,                    KC_SPC, KC_A, KC_N)
+COMB(TIP_X,        KC_X,                    KC_SPC, KC_A, KC_E)
+COMB(TIP_Q,        KC_Q,                    KC_SPC, KC_A, KC_N, KC_E)
+COMB(TIP_Z,        KC_Z,                    KC_SPC, KC_I, KC_E)
+
+COMB(ONE_HAND_COMBO_END,  XXXXXXX,  XXXXXXX)
