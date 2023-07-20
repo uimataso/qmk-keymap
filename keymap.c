@@ -120,6 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+/* Create Combos */
 #undef COMB
 #define COMB(name, key, ...) name,
 enum combos {
@@ -139,7 +140,6 @@ combo_t key_combos[] = {
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    // or with combo index, i.e. its name from enum.
     switch (index) {
         case ONE_HAND_COMBO_START ... ONE_HAND_COMBO_END:
             return COMBO_TERM + 100;
@@ -186,8 +186,10 @@ const custom_shift_key_t custom_shift_keys[] = {
     {KC_DOT,  KC_DQUO}, // Shift . is "
     {KC_UNDS, KC_SLSH}, // Shift _ is /
 };
+
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
+
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     if ((mods & ~MOD_MASK_SHIFT) == 0) {
@@ -304,11 +306,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             case MC_ER:  SEND_STRING("er"); break;
             case MC_OU:  SEND_STRING("ou"); break;
 
-            case MC_THE:
+            case MC_THE:  /* Upcase 't' if holding shift when tap magic key */
                 if (get_mods() & MOD_MASK_SHIFT) SEND_STRING("The");
                 else SEND_STRING("the");
                 break;
-            case MC_UPDIR: /* Alt repert key start from -1 */
+            case MC_UPDIR: /* First time, send "./", then "../" */
                 if (get_repeat_key_count() == -1) SEND_STRING("./");
                 else SEND_STRING("../");
                 break;
