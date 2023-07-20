@@ -10,6 +10,9 @@ enum layers_names {
     _FUN_,
     _WM_,
     _NUMP_,
+
+    _OHA_,
+    _OHB_,
 };
 
 enum custom_keycodes {
@@ -28,6 +31,10 @@ enum custom_keycodes {
     HM_E = RCTL_T(KC_E),
     HM_I = RGUI_T(KC_I),
     HM_O = RALT_T(KC_O),
+
+    // Switch Layer
+    TO_DEF = TO(_DEF_),
+    TO_ONE = TO(_OHA_),
 
     // Combos
     CB_NEQL,
@@ -78,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUN_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, _______, _______, _______, XXXXXXX,
+        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, _______, TO_ONE, _______, XXXXXXX,
         _______, KC_F12,  KC_F11,  KC_F10,  _______,      _______, KC_F1,   _______, _______, _______,
         KC_F6,   KC_F7,   KC_F8,   KC_F9,   _______,      _______, KC_F2,   KC_F3,   KC_F4,   KC_F5,
                                    XXXXXXX, _______,      _______, XXXXXXX
@@ -97,10 +104,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX,
                                    XXXXXXX, XXXXXXX,      KC_0,    XXXXXXX
     ),
+
+    [_OHA_] = LAYOUT(
+        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
+        _______, KC_T,    KC_I,    KC_O,    _______,      _______, _______, _______, _______, _______,
+        _______, KC_A,    KC_N,    KC_E,    _______,      _______, _______, _______, _______, _______,
+                                   _______, _______,      _______, _______
+    ),
+
+    [_OHB_] = LAYOUT(
+        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
+        _______, KC_F,    KC_M,    KC_U,    _______,      _______, _______, _______, _______, _______,
+        _______, KC_Y,    KC_B,    KC_W,    _______,      _______, _______, _______, _______, _______,
+                                   _______, _______,      _______, _______
+    ),
 };
 
 enum combos{
-    // Default Layer
+    DEFAULT_COMBO_START,
+
     DEF_Q,
     DEF_Z,
 
@@ -121,7 +143,6 @@ enum combos{
     DEF_WM,
     DEF_NUMPAD,
 
-    // Symbol Layer
     SYM_DLR,
     SYM_HASH,
     SYM_AMPR,
@@ -134,6 +155,43 @@ enum combos{
     SYM_BRC,
     SYM_CBR,
     SYM_ABK,
+
+    DEFAULT_COMBO_END,
+
+    ONE_HAND_COMBO_START,
+
+    OHA_H,
+    OHA_L,
+    OHA_C,
+    OHA_S,
+    OHA_R,
+    OHA_D,
+
+    OHA_SW,
+
+    OHA_SPC,
+    OHA_BS,
+    OHA_ESC,
+    OHA_TAB,
+    OHA_ENTER,
+
+    OHA_SFT,
+    OHA_CTL,
+    OHA_GUI,
+    OHA_ALT,
+
+    OHB_G,
+    OHB_P,
+    OHB_V,
+    OHB_K,
+    OHB_J,
+    OHB_X,
+    OHB_Q,
+    OHB_Z,
+
+    OHB_2DEF,
+
+    ONE_HAND_COMBO_END,
 };
 
 // Default Layer
@@ -170,6 +228,38 @@ const uint16_t PROGMEM sym_brc[]    = {KC_LBRC, KC_RBRC, COMBO_END};
 const uint16_t PROGMEM sym_cbr[]    = {KC_LCBR, KC_RCBR, COMBO_END};
 const uint16_t PROGMEM sym_abk[]    = {KC_LABK, KC_RABK, COMBO_END};
 
+// One Hand Layer
+const uint16_t PROGMEM oha_h[]      = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM oha_l[]      = {KC_T, KC_I, COMBO_END};
+const uint16_t PROGMEM oha_c[]      = {KC_T, KC_O, COMBO_END};
+const uint16_t PROGMEM oha_s[]      = {KC_N, KC_E, COMBO_END};
+const uint16_t PROGMEM oha_r[]      = {KC_A, KC_N, COMBO_END};
+const uint16_t PROGMEM oha_d[]      = {KC_A, KC_E, COMBO_END};
+
+const uint16_t PROGMEM oha_sw[]     = {KC_T, KC_I, KC_O, COMBO_END};
+
+const uint16_t PROGMEM oha_spc[]    = {KC_A, KC_N, KC_E, COMBO_END};
+const uint16_t PROGMEM oha_bs[]     = {KC_I, KC_E, COMBO_END};
+const uint16_t PROGMEM oha_esc[]    = {KC_A, KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM oha_tab[]    = {KC_A, KC_N, KC_O, COMBO_END};
+const uint16_t PROGMEM oha_enter[]  = {KC_O, KC_E, COMBO_END};
+
+const uint16_t PROGMEM oha_sft[]    = {KC_T, KC_I, KC_E, COMBO_END};
+const uint16_t PROGMEM oha_ctl[]    = {KC_T, KC_E, COMBO_END};
+const uint16_t PROGMEM oha_gui[]    = {KC_T, KC_N, KC_E, COMBO_END};
+const uint16_t PROGMEM oha_alt[]    = {KC_T, KC_N, COMBO_END};
+
+const uint16_t PROGMEM ohb_g[]      = {KC_M, KC_U, COMBO_END};
+const uint16_t PROGMEM ohb_p[]      = {KC_F, KC_M, COMBO_END};
+const uint16_t PROGMEM ohb_v[]      = {KC_F, KC_U, COMBO_END};
+const uint16_t PROGMEM ohb_k[]      = {KC_B, KC_W, COMBO_END};
+const uint16_t PROGMEM ohb_j[]      = {KC_Y, KC_B, COMBO_END};
+const uint16_t PROGMEM ohb_x[]      = {KC_Y, KC_W, COMBO_END};
+const uint16_t PROGMEM ohb_q[]      = {KC_Y, KC_B, KC_W, COMBO_END};
+const uint16_t PROGMEM ohb_z[]      = {KC_M, KC_W, COMBO_END};
+
+const uint16_t PROGMEM ohb_2def[]   = {KC_F, KC_Y, KC_U, KC_W, COMBO_END};
+
 combo_t key_combos[] = {
     // Default Layer
     [DEF_Q]      = COMBO(def_q,      KC_Q),
@@ -205,8 +295,54 @@ combo_t key_combos[] = {
     [SYM_BRC]    = COMBO(sym_brc,    CB_BRC),
     [SYM_CBR]    = COMBO(sym_cbr,    CB_CBR),
     [SYM_ABK]    = COMBO(sym_abk,    CB_ABK),
+
+
+    // One Hand Layer
+    [OHA_H]      = COMBO(oha_h,      KC_H),
+    [OHA_L]      = COMBO(oha_l,      KC_L),
+    [OHA_C]      = COMBO(oha_c,      KC_C),
+    [OHA_S]      = COMBO(oha_s,      KC_S),
+    [OHA_R]      = COMBO(oha_r,      KC_R),
+    [OHA_D]      = COMBO(oha_d,      KC_D),
+
+    [OHA_SW]     = COMBO(oha_sw,     OSL(_OHB_)),
+
+    [OHA_SPC]    = COMBO(oha_spc,    KC_SPC),
+    [OHA_BS]     = COMBO(oha_bs,     KC_BSPC),
+    [OHA_ESC]    = COMBO(oha_esc,    KC_ESC),
+    [OHA_TAB]    = COMBO(oha_tab,    KC_TAB),
+    [OHA_ENTER]  = COMBO(oha_enter,  KC_ENT),
+
+    [OHA_SFT]    = COMBO(oha_sft,    OSM(MOD_LSFT)),
+    [OHA_CTL]    = COMBO(oha_ctl,    OSM(MOD_LCTL)),
+    [OHA_GUI]    = COMBO(oha_gui,    OSM(MOD_LGUI)),
+    [OHA_ALT]    = COMBO(oha_alt,    OSM(MOD_LALT)),
+
+    [OHB_G]      = COMBO(ohb_g,      KC_G),
+    [OHB_P]      = COMBO(ohb_p,      KC_P),
+    [OHB_V]      = COMBO(ohb_v,      KC_V),
+    [OHB_K]      = COMBO(ohb_k,      KC_K),
+    [OHB_J]      = COMBO(ohb_j,      KC_J),
+    [OHB_X]      = COMBO(ohb_x,      KC_X),
+    [OHB_Q]      = COMBO(ohb_q,      KC_Q),
+    [OHB_Z]      = COMBO(ohb_z,      KC_Z),
+
+    [OHB_2DEF]   = COMBO(ohb_2def,   TO_DEF),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    /* Disable combo `SOME_COMBO` on layer `_LAYER_A` */
+    switch (combo_index) {
+        /* Enable def combo if def layer is enable */
+        case DEFAULT_COMBO_START ... DEFAULT_COMBO_END:
+            if (layer_state_is(_DEF_)) return true;
+        case ONE_HAND_COMBO_START ... ONE_HAND_COMBO_END:
+            if (layer_state_is(_OHA_)) return true;
+    }
+
+    return false;
+}
 
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
