@@ -115,6 +115,8 @@ enum combos{
     DEF_SCLN,
     DEF_EXLM,
     DEF_QUES,
+    DEF_DOT,
+    DEF_SLSH,
 
     DEF_WM,
     DEF_NUMPAD,
@@ -149,6 +151,8 @@ const uint16_t PROGMEM def_coln[]   = {MAGIC, KC_Y, COMBO_END};
 const uint16_t PROGMEM def_scln[]   = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM def_exlm[]   = {KC_H, KC_U, COMBO_END};
 const uint16_t PROGMEM def_ques[]   = {KC_U, KC_COMM, COMBO_END};
+const uint16_t PROGMEM def_dot[]    = {HM_E, HM_I, COMBO_END};
+const uint16_t PROGMEM def_slsh[]   = {HM_R, HM_S, COMBO_END};
 
 const uint16_t PROGMEM def_wm[]     = {HM_R, HM_S, HM_T, COMBO_END};
 const uint16_t PROGMEM def_numpad[] = {HM_N, HM_E, HM_I, COMBO_END};
@@ -182,6 +186,8 @@ combo_t key_combos[] = {
     [DEF_SCLN]   = COMBO(def_scln,   KC_SCLN),
     [DEF_EXLM]   = COMBO(def_exlm,   KC_EXLM),
     [DEF_QUES]   = COMBO(def_ques,   KC_QUES),
+    [DEF_DOT]    = COMBO(def_dot,    KC_DOT),
+    [DEF_SLSH]   = COMBO(def_slsh,   KC_SLSH),
 
     [DEF_WM]     = COMBO(def_wm,     OSL(_WM_)),
     [DEF_NUMPAD] = COMBO(def_numpad, TG(_NUMP_)),
