@@ -107,15 +107,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_OHA_] = LAYOUT(
         _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
-        _______, KC_T,    KC_I,    KC_O,    _______,      _______, _______, _______, _______, _______,
-        _______, KC_A,    KC_N,    KC_E,    _______,      _______, _______, _______, _______, _______,
-                                   _______, _______,      _______, _______
+        _______, KC_T,    KC_I,    KC_O,    _______,      _______, KC_O,    KC_I,    KC_T,    _______,
+        _______, KC_A,    KC_N,    KC_E,    _______,      _______, KC_E,    KC_N,    KC_A,    _______,
+                                   KC_BSPC, KC_SPC,       KC_SPC,  KC_BSPC
     ),
 
     [_OHB_] = LAYOUT(
         _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
-        _______, KC_F,    KC_M,    KC_U,    _______,      _______, _______, _______, _______, _______,
-        _______, KC_Y,    KC_B,    KC_W,    _______,      _______, _______, _______, _______, _______,
+        _______, KC_F,    KC_M,    KC_U,    _______,      _______, KC_U,    KC_M,    KC_F,    _______,
+        _______, KC_Y,    KC_B,    KC_W,    _______,      _______, KC_Y,    KC_B,    KC_W,    _______,
                                    _______, _______,      _______, _______
     ),
 };
@@ -191,6 +191,22 @@ enum combos{
 
     OHB_2DEF,
 
+    TIP_F,
+    TIP_M,
+    TIP_U,
+    TIP_Y,
+    TIP_B,
+    TIP_W,
+
+    TIP_G,
+    TIP_P,
+    TIP_V,
+    TIP_K,
+    TIP_J,
+    TIP_X,
+    TIP_Q,
+    TIP_Z,
+
     ONE_HAND_COMBO_END,
 };
 
@@ -258,7 +274,24 @@ const uint16_t PROGMEM ohb_x[]      = {KC_Y, KC_W, COMBO_END};
 const uint16_t PROGMEM ohb_q[]      = {KC_Y, KC_B, KC_W, COMBO_END};
 const uint16_t PROGMEM ohb_z[]      = {KC_M, KC_W, COMBO_END};
 
-const uint16_t PROGMEM ohb_2def[]   = {KC_F, KC_Y, KC_U, KC_W, COMBO_END};
+const uint16_t PROGMEM ohb_2def[]   = {KC_F, KC_Y, COMBO_END};
+
+const uint16_t PROGMEM tip_f[]      = {KC_SPC, KC_T, COMBO_END};
+const uint16_t PROGMEM tip_m[]      = {KC_SPC, KC_I, COMBO_END};
+const uint16_t PROGMEM tip_u[]      = {KC_SPC, KC_O, COMBO_END};
+const uint16_t PROGMEM tip_y[]      = {KC_SPC, KC_A, COMBO_END};
+const uint16_t PROGMEM tip_b[]      = {KC_SPC, KC_N, COMBO_END};
+const uint16_t PROGMEM tip_w[]      = {KC_SPC, KC_E, COMBO_END};
+
+const uint16_t PROGMEM tip_g[]      = {KC_SPC, KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM tip_p[]      = {KC_SPC, KC_T, KC_I, COMBO_END};
+const uint16_t PROGMEM tip_v[]      = {KC_SPC, KC_T, KC_O, COMBO_END};
+const uint16_t PROGMEM tip_k[]      = {KC_SPC, KC_N, KC_E, COMBO_END};
+const uint16_t PROGMEM tip_j[]      = {KC_SPC, KC_A, KC_N, COMBO_END};
+const uint16_t PROGMEM tip_x[]      = {KC_SPC, KC_A, KC_E, COMBO_END};
+const uint16_t PROGMEM tip_q[]      = {KC_SPC, KC_A, KC_N, KC_E, COMBO_END};
+const uint16_t PROGMEM tip_z[]      = {KC_SPC, KC_I, KC_E, COMBO_END};
+
 
 combo_t key_combos[] = {
     // Default Layer
@@ -328,11 +361,27 @@ combo_t key_combos[] = {
     [OHB_Z]      = COMBO(ohb_z,      KC_Z),
 
     [OHB_2DEF]   = COMBO(ohb_2def,   TO_DEF),
+
+    [TIP_F]  = COMBO(tip_f,  KC_F),
+    [TIP_M]  = COMBO(tip_m,  KC_M),
+    [TIP_U]  = COMBO(tip_u,  KC_U),
+    [TIP_Y]  = COMBO(tip_y,  KC_Y),
+    [TIP_B]  = COMBO(tip_b,  KC_B),
+    [TIP_W]  = COMBO(tip_w,  KC_W),
+
+    [TIP_G]  = COMBO(tip_g,  KC_G),
+    [TIP_P]  = COMBO(tip_p,  KC_P),
+    [TIP_V]  = COMBO(tip_v,  KC_V),
+    [TIP_K]  = COMBO(tip_k,  KC_K),
+    [TIP_J]  = COMBO(tip_j,  KC_J),
+    [TIP_X]  = COMBO(tip_x,  KC_X),
+    [TIP_Q]  = COMBO(tip_q,  KC_Q),
+    [TIP_Z]  = COMBO(tip_z,  KC_Z),
+
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    /* Disable combo `SOME_COMBO` on layer `_LAYER_A` */
     switch (combo_index) {
         /* Enable def combo if def layer is enable */
         case DEFAULT_COMBO_START ... DEFAULT_COMBO_END:
