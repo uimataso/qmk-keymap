@@ -381,6 +381,16 @@ combo_t key_combos[] = {
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    // or with combo index, i.e. its name from enum.
+    switch (index) {
+        case ONE_HAND_COMBO_START ... ONE_HAND_COMBO_END:
+            return COMBO_TERM + 100;
+    }
+
+    return COMBO_TERM;
+}
+
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
         /* Enable def combo if def layer is enable */
