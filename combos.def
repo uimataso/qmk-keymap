@@ -103,3 +103,5 @@ COMB(TIP_Z,        KC_Z,                    KC_SPC, KC_I, KC_O)
 COMB(TIP_Q,        KC_Q,                    KC_SPC, KC_T, KC_I)
 
 COMB(ONE_HAND_COMBO_END,  XXXXXXX,  XXXXXXX)
+
+COMB(GAME_2_DEF,   TO_DEF,                  KC_ESC, KC_TAB)
