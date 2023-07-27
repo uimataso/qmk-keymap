@@ -13,6 +13,7 @@ enum layers_names {
 
     _OHA_,
     _OHB_,
+    _OHN_,
 };
 
 enum custom_keycodes {
@@ -113,8 +114,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_OHB_] = LAYOUT(
-        _______, KC_F,    KC_M,    KC_U,    _______,      _______, KC_U,    KC_M,    KC_F,    _______,
-        _______, KC_Y,    KC_B,    KC_W,    _______,      _______, KC_Y,    KC_B,    KC_W,    _______,
+        _______, KC_B,    KC_V,    KC_Y,    _______,      _______, KC_B,    KC_V,    KC_Y,    _______,
+        _______, KC_X,    KC_K,    KC_J,    _______,      _______, KC_J,    KC_K,    KC_X,    _______,
+        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
+                                   _______, _______,      _______, _______
+    ),
+
+    [_OHN_] = LAYOUT(
+        _______, KC_1,    KC_2,    KC_3,    _______,      _______, KC_3,    KC_2,    KC_1,    _______,
+        _______, KC_4,    KC_5,    KC_6,    _______,      _______, KC_6,    KC_5,    KC_4,    _______,
         _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
                                    _______, _______,      _______, _______
     ),
@@ -142,7 +150,7 @@ uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
         case ONE_HAND_COMBO_START ... ONE_HAND_COMBO_END:
-            return COMBO_TERM + 100;
+            return COMBO_TERM + 150;
     }
 
     return COMBO_TERM;
