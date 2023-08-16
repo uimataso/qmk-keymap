@@ -7,16 +7,14 @@ COMB(DEF_ESC,      KC_ESC,                  HM_T, HM_S)
 COMB(DEF_TAB,      KC_TAB,                  KC_F, KC_P)
 COMB(DEF_DEL,      KC_DEL,                  KC_M, HM_N)
 COMB(DEF_INS,      KC_INS,                  HM_T, KC_G)
-COMB(DEF_CAPS,     QK_CAPS_WORD_TOGGLE,     HM_R, HM_T)
+COMB(DEF_CAPS,     QK_CAPS_WORD_TOGGLE,     KC_L, MAGIC)
 
-COMB(DEF_COLN,     KC_COLN,                 MAGIC, KC_Y)
-COMB(DEF_SCLN,     KC_SCLN,                 KC_X, KC_C)
-// COMB(DEF_EXLM,     KC_EXLM,                 KC_H, KC_U)
-// COMB(DEF_QUES,     KC_QUES,                 KC_U, KC_COMM)
-COMB(DEF_BSLS,     KC_BSLS,                 HM_E, HM_I)
-COMB(DEF_SLSH,     KC_SLSH,                 HM_R, HM_S)
-COMB(DEF_DOT,      KC_DOT,                  KC_H, KC_U)
-COMB(DEF_DLR,      KC_DLR,                  KC_U, KC_COMM)
+COMB(DEF_COLN,     KC_COLN,                 MAGIC, KC_Y)    // :
+COMB(DEF_SCLN,     KC_SCLN,                 KC_X, KC_C)     // ;
+COMB(DEF_DQUO,     KC_DQUO,                 HM_E, HM_I)     // "
+COMB(DEF_QUOT,     KC_QUOT,                 HM_R, HM_S)     // '
+COMB(DEF_PIPE,     KC_PIPE,                 KC_H, KC_U)     // |
+COMB(DEF_AMPR,     KC_AMPR,                 KC_U, KC_COMM)  // &
 
 COMB(DEF_WM,       OSL(_WM_),               HM_R, HM_S, HM_T)
 COMB(DEF_NUMPAD,   TG(_NUMP_),              HM_N, HM_E, HM_I)
@@ -28,19 +26,20 @@ COMB(DEF_RCBR,     KC_RCBR,                 MAGIC, HM_E)
 COMB(DEF_LBRC,     KC_LBRC,                 KC_W, HM_R)
 COMB(DEF_RBRC,     KC_RBRC,                 KC_Y, HM_I)
 
-COMB(SYM_DLR,      KC_DLR,                  KC_1, KC_RBRC)
-COMB(SYM_HASH,     KC_HASH,                 KC_0, KC_RPRN)
-COMB(SYM_AMPR,     KC_AMPR,                 KC_7, KC_8)
-COMB(SYM_PIPE,     KC_PIPE,                 KC_8, KC_9)
-COMB(SYM_QUES,     KC_QUES,                 KC_2, KC_3)
-COMB(SYM_EXLM,     KC_EXLM,                 KC_MINS, KC_RABK)
+COMB(SYM_BSLS,     KC_BSLS,                 KC_HASH, KC_LPRN)
+COMB(SYM_PERC,     KC_PERC,                 KC_LPRN, KC_LPRN)
+COMB(SYM_CIRC,     KC_CIRC,                 KC_EQL,  KC_MINS)
+COMB(SYM_SLSH,     KC_SLSH,                 KC_MINS, KC_PLUS)
 
-COMB(SYM_NEQL,     CB_NEQL,                 KC_EQL, KC_RCBR)
+COMB(SYM_4,        KC_4,                    KC_1, KC_2)
+COMB(SYM_5,        KC_5,                    KC_2, KC_3)
+COMB(SYM_6,        KC_6,                    KC_8, KC_9)
+COMB(SYM_7,        KC_7,                    KC_9, KC_0)
 
-COMB(SYM_PAN,      CB_PAN,                  KC_LPRN, KC_RPRN)
-COMB(SYM_BRC,      CB_BRC,                  KC_LBRC, KC_RBRC)
-COMB(SYM_CBR,      CB_CBR,                  KC_LCBR, KC_RCBR)
-COMB(SYM_ABK,      CB_ABK,                  KC_LABK, KC_RABK)
+// COMB(SYM_PAN,      CB_PAN,                  KC_LPRN, KC_RPRN)
+// COMB(SYM_BRC,      CB_BRC,                  KC_LBRC, KC_RBRC)
+// COMB(SYM_CBR,      CB_CBR,                  KC_LCBR, KC_RCBR)
+// COMB(SYM_ABK,      CB_ABK,                  KC_LABK, KC_RABK)
 
 COMB(DEFAULT_COMBO_END,  XXXXXXX,  XXXXXXX)
 

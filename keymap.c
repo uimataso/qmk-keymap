@@ -41,11 +41,7 @@ enum custom_keycodes {
     TO_GAME = TO(_GAME_),
 
     // Combos
-    CB_NEQL,
-    CB_PAN,
-    CB_BRC,
-    CB_CBR,
-    CB_ABK,
+    CB_HMD,
 
     // Magic keys
     MAGIC = QK_ALT_REPEAT_KEY,
@@ -82,9 +78,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_SYM_] = LAYOUT(
-        XXXXXXX, KC_LCBR, KC_RCBR, KC_EQL,  KC_GRV,       KC_AT,   KC_MINS, KC_RABK, KC_LABK, XXXXXXX,
-        KC_PLUS, KC_LPRN, KC_RPRN, KC_0,    KC_SLSH,      KC_CIRC, KC_1,    KC_RBRC, KC_LBRC, KC_ASTR,
-        KC_6,    KC_7,    KC_8,    KC_9,    KC_PERC,      KC_TILD, KC_2,    KC_3,    KC_4,    KC_5,
+        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
+        KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_MINS, KC_PLUS, KC_ASTR,
+        KC_QUES, KC_8,    KC_9,    KC_0,    KC_PERC,      _______, KC_LBRC, KC_RBRC, _______, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
@@ -204,8 +200,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
 #include "features/custom_shift_keys.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
-    {KC_COMM, KC_QUOT}, // Shift , is '
-    {KC_DOT,  KC_DQUO}, // Shift . is "
+    // {KC_COMM, KC_QUOT}, // Shift , is '
+    // {KC_DOT,  KC_DQUO}, // Shift . is "
     {KC_UNDS, KC_SLSH}, // Shift _ is /
 };
 
@@ -309,11 +305,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (record->event.pressed) {
         switch (keycode) {
             // Combos
-            case CB_NEQL:  SEND_STRING("!=");               return false; break;
-            case CB_PAN:   SEND_STRING("()"SS_TAP(X_LEFT)); return false; break;
-            case CB_BRC:   SEND_STRING("[]"SS_TAP(X_LEFT)); return false; break;
-            case CB_CBR:   SEND_STRING("{}"SS_TAP(X_LEFT)); return false; break;
-            case CB_ABK:   SEND_STRING("<>"SS_TAP(X_LEFT)); return false; break;
+            case CB_HMD: SEND_STRING("~/"); return false; break;
 
             // Magic keys
             case MC_ND:  SEND_STRING("nd"); break;
