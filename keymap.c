@@ -79,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYM_] = LAYOUT(
         XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
-        KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_MINS, KC_PLUS, KC_ASTR,
-        KC_QUES, KC_8,    KC_9,    KC_0,    KC_PERC,      _______, KC_LBRC, KC_RBRC, _______, _______,
+        KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_PLUS, KC_MINS, KC_ASTR,
+        KC_QUES, KC_8,    KC_9,    KC_0,    KC_TILD,      _______, KC_LBRC, KC_RBRC, _______, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_WM_] = LAYOUT(
         XXXXXXX, _______, _______, _______, _______,      _______, _______, _______, _______, XXXXXXX,
-        _______, _______, _______, _______, _______,      _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4),
+        _______, G(KC_1), G(KC_K), G(KC_J), _______,      _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4),
         _______, _______, _______, _______, _______,      _______, G(KC_5), G(KC_6), G(KC_7), G(KC_8),
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),

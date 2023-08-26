@@ -27,9 +27,9 @@ COMB(DEF_LBRC,     KC_LBRC,                 KC_W, HM_R)
 COMB(DEF_RBRC,     KC_RBRC,                 KC_Y, HM_I)
 
 COMB(SYM_BSLS,     KC_BSLS,                 KC_HASH, KC_LPRN)
-COMB(SYM_PERC,     KC_PERC,                 KC_LPRN, KC_LPRN)
-COMB(SYM_CIRC,     KC_CIRC,                 KC_EQL,  KC_MINS)
-COMB(SYM_SLSH,     KC_SLSH,                 KC_MINS, KC_PLUS)
+COMB(SYM_PERC,     KC_PERC,                 KC_LPRN, KC_RPRN)
+COMB(SYM_CIRC,     KC_CIRC,                 KC_EQL,  KC_PLUS)
+COMB(SYM_SLSH,     KC_SLSH,                 KC_PLUS, KC_MINS)
 
 COMB(SYM_4,        KC_4,                    KC_1, KC_2)
 COMB(SYM_5,        KC_5,                    KC_2, KC_3)
@@ -40,6 +40,8 @@ COMB(SYM_7,        KC_7,                    KC_9, KC_0)
 // COMB(SYM_BRC,      CB_BRC,                  KC_LBRC, KC_RBRC)
 // COMB(SYM_CBR,      CB_CBR,                  KC_LCBR, KC_RCBR)
 // COMB(SYM_ABK,      CB_ABK,                  KC_LABK, KC_RABK)
+
+COMB(WM_TAB,       G(KC_TAB),               G(KC_1), G(KC_K), G(KC_J))
 
 COMB(DEFAULT_COMBO_END,  XXXXXXX,  XXXXXXX)
 
