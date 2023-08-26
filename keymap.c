@@ -11,10 +11,6 @@ enum layers_names {
     _WM_,
     _NUMP_,
 
-    _OHA_,
-    _OHB_,
-    _OHN_,
-
     _GAME_,
 };
 
@@ -37,7 +33,6 @@ enum custom_keycodes {
 
     // Switch Layer
     TO_DEF = TO(_DEF_),
-    TO_ONE = TO(_OHA_),
     TO_GAME = TO(_GAME_),
 
     // Combos
@@ -85,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUN_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, TO_GAME, TO_ONE,  _______, XXXXXXX,
+        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, TO_GAME, _______, _______, XXXXXXX,
         _______, KC_F12,  KC_F11,  KC_F10,  _______,      _______, KC_F1,   _______, _______, _______,
         KC_F6,   KC_F7,   KC_F8,   KC_F9,   _______,      _______, KC_F2,   KC_F3,   KC_F4,   KC_F5,
                                    XXXXXXX, _______,      _______, XXXXXXX
@@ -103,27 +98,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG(_NUMP_),   XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX,
                                    XXXXXXX, XXXXXXX,      KC_0,    XXXXXXX
-    ),
-
-    [_OHA_] = LAYOUT(
-        _______, KC_T,    KC_I,    KC_O,    _______,      _______, KC_O,    KC_I,    KC_T,    _______,
-        _______, KC_A,    KC_N,    KC_E,    _______,      _______, KC_E,    KC_N,    KC_A,    _______,
-        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
-                                   KC_BSPC, KC_SPC,       KC_SPC,  KC_BSPC
-    ),
-
-    [_OHB_] = LAYOUT(
-        _______, KC_B,    KC_V,    KC_Y,    _______,      _______, KC_B,    KC_V,    KC_Y,    _______,
-        _______, KC_X,    KC_K,    KC_J,    _______,      _______, KC_J,    KC_K,    KC_X,    _______,
-        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
-                                   _______, _______,      _______, _______
-    ),
-
-    [_OHN_] = LAYOUT(
-        _______, KC_1,    KC_2,    KC_3,    _______,      _______, KC_3,    KC_2,    KC_1,    _______,
-        _______, KC_8,    KC_9,    KC_0,    _______,      _______, KC_0,    KC_9,    KC_8,    _______,
-        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
-                                   _______, _______,      _______, _______
     ),
 
     [_GAME_] = LAYOUT(
@@ -154,23 +128,12 @@ combo_t key_combos[] = {
 
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 
-uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    switch (index) {
-        case ONE_HAND_COMBO_START ... ONE_HAND_COMBO_END:
-            return COMBO_TERM + 150;
-    }
-
-    return COMBO_TERM;
-}
-
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
         /* Enable def combo if def layer is enable */
         case DEFAULT_COMBO_START ... DEFAULT_COMBO_END:
             if (layer_state_is(_GAME_)) return false;
             if (layer_state_is(_DEF_)) return true;
-        case ONE_HAND_COMBO_START ... ONE_HAND_COMBO_END:
-            if (layer_state_is(_OHA_)) return true;
         case GAME_2_DEF:
             if (layer_state_is(_GAME_)) return true;
     }
