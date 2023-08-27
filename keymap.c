@@ -20,14 +20,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUM_] = LAYOUT(
-        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
+        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, ST_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
         KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_PLUS, KC_MINS, KC_ASTR,
         KC_QUES, KC_8,    KC_9,    KC_0,    KC_TILD,      _______, KC_LBRC, KC_RBRC, _______, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
     [_NUMWORD_] = LAYOUT(
-        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
+        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, ST_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
         NW_6,    NW_4,    NW_0,    NW_2,    KC_G,         _______, NW_3,    NW_1,    NW_5,    NW_7,
         KC_UNDS, _______, _______, KC_8,    KC_TILD,      _______, NW_9,    _______, KC_COMM, KC_DOT,
                                    XXXXXXX, _______,      _______, XXXXXXX
@@ -234,8 +234,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             case NW_9: SEND_STRING("9"); return false; break;
             case NW_0: SEND_STRING("0"); return false; break;
 
-            // Combos
-            case CB_HMD: SEND_STRING("~/"); return false; break;
+            // String
+            case ST_HMD: SEND_STRING("~/"); return false; break;
 
             // Magic keys
             case MC_ND:  SEND_STRING("nd"); break;

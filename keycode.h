@@ -34,8 +34,8 @@ enum custom_keycodes {
     // Switch Layer
     TO_DEF = TO(_DEF_),
 
-    // Combos
-    CB_HMD,
+    // String
+    ST_HMD,
 
     // Magic keys
     MAGIC = QK_ALT_REPEAT_KEY,
