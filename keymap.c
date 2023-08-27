@@ -217,6 +217,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                     numword_state = 2;  // Acting like OSL.
                 }
             }
+            update_tri_layer(_NAV_, _NUM_, _FUN_);
             return false;
     }
 
