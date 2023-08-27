@@ -6,19 +6,16 @@
 enum layers_names {
     _DEF_,
     _NAV_,
-    _SYM_,
+    _NUM_,
     _FUN_,
     _WM_,
-    _NUMP_,
-
-    _GAME_,
 };
 
 enum custom_keycodes {
     KEYCODE = SAFE_RANGE,
 
     NAV_SPC = LT(_NAV_, KC_SPC),
-    SYM_ENT = LT(_SYM_, KC_ENT),
+    NUM_ENT = LT(_NUM_, KC_ENT),
 
     // Home Row Mod
     HM_A = LALT_T(KC_A),
@@ -33,7 +30,6 @@ enum custom_keycodes {
 
     // Switch Layer
     TO_DEF = TO(_DEF_),
-    TO_GAME = TO(_GAME_),
 
     // Combos
     CB_HMD,
@@ -62,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    MAGIC,   KC_Y,    KC_SCLN,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
-                                   XXXXXXX, NAV_SPC,      SYM_ENT, XXXXXXX
+                                   XXXXXXX, NAV_SPC,      NUM_ENT, XXXXXXX
     ),
 
     [_NAV_] = LAYOUT(
@@ -72,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
-    [_SYM_] = LAYOUT(
+    [_NUM_] = LAYOUT(
         XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
         KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_PLUS, KC_MINS, KC_ASTR,
         KC_QUES, KC_8,    KC_9,    KC_0,    KC_TILD,      _______, KC_LBRC, KC_RBRC, _______, _______,
@@ -80,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUN_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, TO_GAME, _______, _______, XXXXXXX,
+        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, _______, _______, _______, XXXXXXX,
         _______, KC_F12,  KC_F11,  KC_F10,  _______,      _______, KC_F1,   _______, _______, _______,
         KC_F6,   KC_F7,   KC_F8,   KC_F9,   _______,      _______, KC_F2,   KC_F3,   KC_F4,   KC_F5,
                                    XXXXXXX, _______,      _______, XXXXXXX
@@ -91,20 +87,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, G(KC_1), G(KC_K), G(KC_J), _______,      _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4),
         _______, _______, _______, _______, _______,      _______, G(KC_5), G(KC_6), G(KC_7), G(KC_8),
                                    XXXXXXX, _______,      _______, XXXXXXX
-    ),
-
-    [_NUMP_] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG(_NUMP_),   XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, KC_1,    KC_2,    KC_3,    XXXXXXX,
-                                   XXXXXXX, XXXXXXX,      KC_0,    XXXXXXX
-    ),
-
-    [_GAME_] = LAYOUT(
-        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,  KC_I,    KC_O,   KC_P,
-        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,  KC_K,    KC_L,   KC_ENT,
-        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,  KC_COMM, KC_DOT, KC_SLSH,
-                                   KC_ESC,  KC_SPC,          KC_SPC,  KC_TAB
     ),
 
 };
@@ -132,10 +114,7 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     switch (combo_index) {
         /* Enable def combo if def layer is enable */
         case DEFAULT_COMBO_START ... DEFAULT_COMBO_END:
-            if (layer_state_is(_GAME_)) return false;
             if (layer_state_is(_DEF_)) return true;
-        case GAME_2_DEF:
-            if (layer_state_is(_GAME_)) return true;
     }
 
     return false;
@@ -254,13 +233,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         case NAV_SPC:
             if (record->event.pressed) layer_on(_NAV_);
             else layer_off(_NAV_);
-            update_tri_layer(_NAV_, _SYM_, _FUN_);
+            update_tri_layer(_NAV_, _NUM_, _FUN_);
             // return false;
             return true;
-        case SYM_ENT:
-            if (record->event.pressed) layer_on(_SYM_);
-            else layer_off(_SYM_);
-            update_tri_layer(_NAV_, _SYM_, _FUN_);
+        case NUM_ENT:
+            if (record->event.pressed) layer_on(_NUM_);
+            else layer_off(_NUM_);
+            update_tri_layer(_NAV_, _NUM_, _FUN_);
             // return false;
             return true;
     }

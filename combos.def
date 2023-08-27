@@ -17,7 +17,6 @@ COMB(DEF_PIPE,     KC_PIPE,                 KC_H, KC_U)     // |
 COMB(DEF_AMPR,     KC_AMPR,                 KC_U, KC_COMM)  // &
 
 COMB(DEF_WM,       OSL(_WM_),               HM_R, HM_S, HM_T)
-COMB(DEF_NUMPAD,   TG(_NUMP_),              HM_N, HM_E, HM_I)
 
 COMB(DEF_LPRN,     KC_LPRN,                 KC_P, HM_T)
 COMB(DEF_RPRN,     KC_RPRN,                 KC_L, HM_N)
@@ -44,5 +43,3 @@ COMB(SYM_7,        KC_7,                    KC_9, KC_0)
 COMB(WM_TAB,       G(KC_TAB),               G(KC_1), G(KC_K), G(KC_J))
 
 COMB(DEFAULT_COMBO_END,  XXXXXXX,  XXXXXXX)
-
-COMB(GAME_2_DEF,   TO_DEF,                  KC_ESC, KC_TAB)
