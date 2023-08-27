@@ -9,7 +9,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    MAGIC,   KC_Y,    KC_SCLN,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
-                                   XXXXXXX, NAV_SPC,      NUM_ENT, XXXXXXX
+                                   XXXXXXX, NAV_SPC,      NUM_ENT, NUMWORD
     ),
 
     [_NAV_] = LAYOUT(
@@ -23,6 +23,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
         KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_PLUS, KC_MINS, KC_ASTR,
         KC_QUES, KC_8,    KC_9,    KC_0,    KC_TILD,      _______, KC_LBRC, KC_RBRC, _______, _______,
+                                   XXXXXXX, _______,      _______, XXXXXXX
+    ),
+
+    [_NUMWORD_] = LAYOUT(
+        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, CB_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
+        NW_6,    NW_4,    NW_0,    NW_2,    KC_G,         _______, NW_3,    NW_1,    NW_5,    NW_7,
+        KC_UNDS, _______, _______, KC_8,    KC_TILD,      _______, NW_9,    _______, KC_COMM, KC_DOT,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
@@ -175,12 +182,14 @@ bool caps_word_press_user(uint16_t keycode) {
     }
 }
 
+// 0 => acting like MO, 1 => undetermined, 2 => acting like OSL.
+static uint8_t numword_state = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_custom_shift_keys(keycode, record)) { return false; }
 
-    // Tri Layer Implementation
     switch (keycode) {
+        // Tri Layer Implementation
         case NAV_SPC:
             if (record->event.pressed) layer_on(_NAV_);
             else layer_off(_NAV_);
@@ -193,10 +202,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             update_tri_layer(_NAV_, _NUM_, _FUN_);
             // return false;
             return true;
+
+        case NUMWORD:
+            static uint32_t tap_deadline = 0;
+            if (record->event.pressed) {  // On pressed.
+                tap_deadline = timer_read32() + TAPPING_TERM;
+                layer_on(_NUM_);
+                numword_state = 1;  // Set undetermined state.
+            } else {  // On release.
+                layer_off(_NUM_);
+                if (numword_state && !timer_expired32(timer_read32(), tap_deadline)) {
+                    // NUMWORD was released without pressing another key within 200 ms.
+                    layer_on(_NUMWORD_);
+                    numword_state = 2;  // Acting like OSL.
+                }
+            }
+            return false;
     }
 
     if (record->event.pressed) {
         switch (keycode) {
+            // Num word
+            case NW_1: SEND_STRING("1"); return false; break;
+            case NW_2: SEND_STRING("2"); return false; break;
+            case NW_3: SEND_STRING("3"); return false; break;
+            case NW_4: SEND_STRING("4"); return false; break;
+            case NW_5: SEND_STRING("5"); return false; break;
+            case NW_6: SEND_STRING("6"); return false; break;
+            case NW_7: SEND_STRING("7"); return false; break;
+            case NW_8: SEND_STRING("8"); return false; break;
+            case NW_9: SEND_STRING("9"); return false; break;
+            case NW_0: SEND_STRING("0"); return false; break;
+
             // Combos
             case CB_HMD: SEND_STRING("~/"); return false; break;
 
@@ -225,4 +262,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     }
 
     return true;
+}
+
+void post_process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // Turn off the layer if another key is pressed while acting like OSL. The
+    // `(numword_state >>= 1)` both tests that state = 2 and shifts it toward zero.
+
+    switch(keycode) {
+        case NUMWORD:
+        case NW_1 ... NW_0:
+            break;
+
+        default:
+            if (numword_state >>= 1) {
+                layer_off(_NUMWORD_);
+            }
+    }
 }
