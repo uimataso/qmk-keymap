@@ -177,9 +177,12 @@ bool caps_word_press_user(uint16_t keycode) {
 
 // 0 => acting like MO, 1 => undetermined, 2 => acting like OSL.
 static uint8_t numword_state = 0;
+static uint16_t numword_idle_timer = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_custom_shift_keys(keycode, record)) { return false; }
+
+    numword_idle_timer = record->event.time + NUMWORD_IDLE_TIMEOUT;
 
     switch (keycode) {
         // Tri Layer Implementation
@@ -273,5 +276,12 @@ void post_process_record_user(uint16_t keycode, keyrecord_t* record) {
             if (numword_state >>= 1) {
                 layer_off(_NUM_);
             }
+    }
+}
+
+void matrix_scan_user(void) {
+    if (numword_state == 2 && timer_expired(timer_read(), numword_idle_timer)) {
+        layer_off(_NUM_);
+        numword_state = 0;
     }
 }
