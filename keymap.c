@@ -9,7 +9,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    MAGIC,   KC_Y,    KC_SCLN,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
-                                   XXXXXXX, NAV_SPC,      NUM_ENT, NUMWORD
+                                   XXXXXXX, NAV_SPC,      NUMWORD, XXXXXXX
     ),
 
     [_NAV_] = LAYOUT(
@@ -20,9 +20,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUM_] = LAYOUT(
-        XXXXXXX, KC_HASH, KC_LPRN, KC_RPRN, ST_HMD,       KC_AT,   KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
-        KC_EXLM, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_EQL,  KC_PLUS, KC_MINS, KC_ASTR,
-        KC_QUES, KC_8,    KC_9,    KC_0,    KC_TILD,      _______, KC_LBRC, KC_RBRC, _______, _______,
+        XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  ST_HMD,       _______, KC_ASTR, KC_SLSH, KC_CIRC, XXXXXXX,
+        KC_6,    KC_4,    KC_0,    KC_2,    KC_GRV,       KC_AT,   KC_3,    KC_1,    KC_5,    KC_7,
+        KC_UNDS, KC_BSLS, KC_PERC, KC_8,    KC_TILD,      _______, KC_9,    KC_DLR,  KC_COMM, KC_DOT,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
@@ -220,6 +220,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         switch (keycode) {
             // String
             case ST_HMD: SEND_STRING("~/"); return false; break;
+            case ST_PRNP: SEND_STRING("()"); return false; break;
+            case ST_BRCP: SEND_STRING("[]"); return false; break;
+            case ST_CBRP: SEND_STRING("{}"); return false; break;
+            case ST_ABKP: SEND_STRING("<>"); return false; break;
+            case ST_PRNL: SEND_STRING("()"SS_TAP(X_LEFT)); return false; break;
+            case ST_BRCL: SEND_STRING("[]"SS_TAP(X_LEFT)); return false; break;
+            case ST_CBRL: SEND_STRING("{}"SS_TAP(X_LEFT)); return false; break;
+            case ST_ABKL: SEND_STRING("<>"SS_TAP(X_LEFT)); return false; break;
 
             // Magic keys
             case MC_ND:  SEND_STRING("nd"); break;

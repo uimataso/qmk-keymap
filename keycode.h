@@ -33,6 +33,15 @@ enum custom_keycodes {
 
     // String
     ST_HMD,
+    ST_PRNP,
+    ST_PRNL,
+    ST_BRCP,
+    ST_BRCL,
+    ST_CBRP,
+    ST_CBRL,
+    ST_ABKP,
+    ST_ABKL,
+
 
     // Magic keys
     MAGIC = QK_ALT_REPEAT_KEY,
