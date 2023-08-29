@@ -200,9 +200,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             // From (https://www.reddit.com/r/olkb/comments/v5zvo4/comment/ibfcpgu/?context=3)
             static uint32_t tap_deadline = 0;
             if (record->event.pressed) {  // On pressed.
-                tap_deadline = timer_read32() + TAPPING_TERM;
-                layer_on(_NUM_);
-                numword_state = 1;  // Set undetermined state.
+                if (numword_state) {
+                    layer_off(_NUM_);
+                    numword_state = 0;
+                } else {
+                    tap_deadline = timer_read32() + TAPPING_TERM;
+                    layer_on(_NUM_);
+                    numword_state = 1;  // Set undetermined state.
+                }
             } else {  // On release.
                 if (numword_state && !timer_expired32(timer_read32(), tap_deadline)) {
                     // NUMWORD was released without pressing another key within 200 ms.
