@@ -5,7 +5,6 @@ enum layers_names {
     _DEF_,
     _NAV_,
     _NUM_,
-    _NUMWORD_,
     _FUN_,
     _WM_,
 };
@@ -17,8 +16,6 @@ enum custom_keycodes {
     NUM_ENT = LT(_NUM_, KC_ENT),
 
     NUMWORD,
-    NW_1, NW_2, NW_3, NW_4, NW_5,
-    NW_6, NW_7, NW_8, NW_9, NW_0,
 
     // Home Row Mod
     HM_A = LALT_T(KC_A),
