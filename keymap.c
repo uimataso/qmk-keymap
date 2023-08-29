@@ -14,7 +14,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV_] = LAYOUT(
         XXXXXXX, _______, _______, _______, _______,      _______, _______, _______, _______, XXXXXXX,
-        KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        _______, _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         _______, _______, KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
