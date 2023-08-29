@@ -3,12 +3,12 @@ COMB(DEF_Q,        KC_Q,                    KC_W, KC_F)
 COMB(DEF_Z,        KC_Z,                    KC_C, KC_D)
 
 COMB(DEF_BS,       KC_BSPC,                 HM_N, HM_E)
-COMB(DEF_ENTER,    KC_ENTER,                HM_E, HM_I)
+COMB(DEF_ENTER,    KC_ENTER,                KC_L, MAGIC)
 COMB(DEF_ESC,      KC_ESC,                  HM_T, HM_S)
 COMB(DEF_TAB,      KC_TAB,                  KC_F, KC_P)
 COMB(DEF_DEL,      KC_DEL,                  KC_M, HM_N)
 COMB(DEF_INS,      KC_INS,                  HM_T, KC_G)
-COMB(DEF_CAPS,     QK_CAPS_WORD_TOGGLE,     KC_L, MAGIC)
+COMB(DEF_CAPS,     QK_CAPS_WORD_TOGGLE,     HM_E, HM_I)
 
 COMB(DEF_COLN,     KC_COLN,                 MAGIC, KC_Y)          // :
 COMB(DEF_SCLN,     KC_SCLN,                 KC_X, KC_C)           // ;
@@ -43,6 +43,9 @@ COMB(NUM_LBRC,     KC_LBRC,                 KC_BSLS, KC_PERC)          // [ ]
 COMB(NUM_RBRC,     KC_RBRC,                          KC_PERC, KC_8)
 COMB(NUM_BRCP,     ST_BRCP,                 KC_BSLS, KC_PERC, KC_8)
 COMB(NUM_BRCL,     ST_BRCL,                 KC_BSLS,          KC_8)
+
+COMB(NUM_BS,       KC_BSPC,                 KC_3, KC_1)
+COMB(NUM_ENTER,    KC_ENTER,                KC_ASTR, KC_SLSH)
 
 COMB(WM_TAB,       G(KC_TAB),               G(KC_1), G(KC_K), G(KC_J))
 
