@@ -9,23 +9,23 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF_] = LAYOUT(
-        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    MAGIC,   KC_Y,    KC_SCLN,
+        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    KC_QUOT, KC_Y,    KC_SCLN,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
                                    XXXXXXX, NAV_SPC,      NUM_ENT, XXXXXXX
     ),
 
     [_NAV_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, _______,      _______, _______, _______, Z(KC_I), XXXXXXX,
+        XXXXXXX, _______, S(C(KC_TAB)), C(KC_TAB), _______,      _______, _______, _______, Z(KC_I), XXXXXXX,
         C(KC_A), _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         C(KC_Z), KC_CUT,  KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
     [_NUM_] = LAYOUT(
-        XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  ST_HMD,       _______, KC_ASTR, KC_SLSH, KC_CIRC, XXXXXXX,
+        XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  KC_TILD,      _______, KC_ASTR, KC_SLSH, KC_CIRC, XXXXXXX,
         KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,       KC_AT,   KC_1,    KC_2,    KC_3,    KC_4,
-        KC_UNDS, KC_BSLS, KC_PERC, KC_6,    KC_TILD,      _______, KC_5,    KC_DLR,  KC_COMM, KC_DOT,
+        KC_UNDS, KC_BSLS, KC_PERC, KC_6,    ST_HMD,       _______, KC_5,    KC_DLR,  KC_COMM, KC_DOT,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
