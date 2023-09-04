@@ -4,18 +4,21 @@
 #include QMK_KEYBOARD_H
 #include "keycode.h"
 
+// Super key, for custom keybind
+#define Z(key) A(G(C(S(key))))
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF_] = LAYOUT(
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    MAGIC,   KC_Y,    KC_SCLN,
         HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
         KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
-                                   XXXXXXX, NAV_SPC,      NUMWORD, XXXXXXX
+                                   XXXXXXX, NAV_SPC,      NUM_ENT, XXXXXXX
     ),
 
     [_NAV_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, _______,      _______, _______, _______, _______, XXXXXXX,
-        _______, _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, _______, KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
+        XXXXXXX, _______, _______, _______, _______,      _______, _______, _______, Z(KC_I), XXXXXXX,
+        C(KC_A), _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        C(KC_Z), KC_CUT,  KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
@@ -133,7 +136,13 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
             case KC_Y:  return MC_OU;       // y -> ou  *
             case KC_Z:  return KC_Z;        // z ->
 
+            case KC_LPRN: return KC_RPRN;  // ( -> )
+            case KC_LCBR: return KC_RCBR;  // { -> }
+            case KC_LBRC: return KC_RBRC;  // [ -> ]
+            case KC_LABK: return KC_RABK;  // < -> >
+
             case KC_DOT:     return MC_UPDIR;  // . -> ./
+            case KC_MINS:    return MC_HELP;   // - -> -help
             case NAV_SPC:    return MC_THE;    // _ -> the
 
             /* Reverse Repeat */
@@ -250,14 +259,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             case MC_ER:  SEND_STRING("er"); break;
             case MC_OU:  SEND_STRING("ou"); break;
 
-            case MC_THE:  /* Upcase 't' if holding shift when tap magic key */
-                if (get_mods() & MOD_MASK_SHIFT) SEND_STRING("The");
-                else SEND_STRING("the");
-                break;
             case MC_UPDIR: /* First time, send "./", then "../" */
                 if (get_repeat_key_count() == -1) SEND_STRING("./");
                 else SEND_STRING("../");
                 break;
+            case MC_THE:  /* Upcase 't' if holding shift when tap magic key */
+                if (get_mods() & MOD_MASK_SHIFT) SEND_STRING("The");
+                else SEND_STRING("the");
+                break;
+            case MC_HELP: SEND_STRING("-help"); break;
         }
     }
 

@@ -58,6 +58,7 @@ enum custom_keycodes {
     MC_ER,
     MC_OU,
 
-    MC_THE,
     MC_UPDIR,
+    MC_HELP,
+    MC_THE,
 };
