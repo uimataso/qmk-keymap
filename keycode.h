@@ -17,8 +17,6 @@ enum custom_keycodes {
     NAV_SPC = LT(_NAV_, KC_SPC),
     NUM_ENT = LT(_NUM_, KC_ENT),
 
-    NUMWORD,
-
     // Home Row Mod
     HM_A = LALT_T(KC_A),
     HM_S = LGUI_T(KC_S),
@@ -65,24 +63,4 @@ enum custom_keycodes {
     ST_CBRL,
     ST_ABKP,
     ST_ABKL,
-
-
-    // Magic keys
-    MAGIC = QK_ALT_REPEAT_KEY,
-
-    MC_ND,
-    MC_LE,
-    MC_OR,
-    MC_HT,
-    MC_ON,
-    MC_ENT,
-    MC_UE,
-    MC_ION,
-    MC_HE,
-    MC_ER,
-    MC_OU,
-
-    MC_UPDIR,
-    MC_HELP,
-    MC_THE,
 };
