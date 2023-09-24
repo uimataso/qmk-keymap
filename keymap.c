@@ -9,28 +9,42 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF_] = LAYOUT(
-        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    KC_QUOT, KC_Y,    KC_SCLN,
-        HM_A,    HM_R,    HM_S,    HM_T,    KC_G,         KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
-        KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_U,    KC_COMM, KC_DOT,
-                                   XXXXXXX, NAV_SPC,      NUM_ENT, XXXXXXX
+        XXXXXXX, KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    XXXXXXX,
+        HM_A,    HM_S,    HM_D,    HM_F,    KC_G,         KC_H,    HM_J,    HM_K,    HM_L,    HM_P,
+        KC_UNDS, KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M,    KC_QUOT, KC_COMM, KC_DOT,
+                                   NAV_SPC, NAV_SPC,      NUM_ENT, NUM_ENT
+    ),
+
+    [_COLEMAK_] = LAYOUT(
+        XXXXXXX, KC_W,    KC_F,    KC_P,    KC_B,         KC_J,    KC_L,    KC_U,    KC_Y,    XXXXXXX,
+        CM_A,    CM_R,    CM_S,    CM_T,    KC_G,         KC_M,    CM_N,    CM_E,    CM_I,    CM_O,
+        KC_UNDS, KC_X,    KC_C,    KC_D,    KC_V,         KC_K,    KC_H,    KC_QUOT, KC_COMM, KC_DOT,
+                                   NAV_SPC, NAV_SPC,      NUM_ENT, NUM_ENT
+    ),
+
+    [_NERPS_] = LAYOUT(
+        XXXXXXX, KC_L,    KC_D,    KC_P,    KC_V,         KC_X,    KC_K,    KC_O,    KC_U,    XXXXXXX,
+        NE_N,    NE_R,    NE_T,    NE_S,    KC_G,         KC_Y,    NE_H,    NE_E,    NE_I,    NE_A,
+        KC_UNDS, KC_J,    KC_M,    KC_C,    KC_W,         KC_B,    KC_F,    KC_QUOT, KC_COMM, KC_DOT,
+                                   NAV_SPC, NAV_SPC,      NUM_ENT, NUM_ENT
     ),
 
     [_NAV_] = LAYOUT(
         XXXXXXX, _______, S(C(KC_TAB)), C(KC_TAB), _______,      _______, _______, _______, Z(KC_I), XXXXXXX,
         C(KC_A), _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         C(KC_Z), KC_CUT,  KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
-                                   XXXXXXX, _______,      _______, XXXXXXX
+                                   _______, _______,      _______, _______
     ),
 
     [_NUM_] = LAYOUT(
         XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  KC_TILD,      _______, KC_ASTR, KC_SLSH, KC_CIRC, XXXXXXX,
         KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,       KC_AT,   KC_1,    KC_2,    KC_3,    KC_4,
         KC_UNDS, KC_BSLS, KC_PERC, KC_6,    ST_HMD,       _______, KC_5,    KC_DLR,  KC_COMM, KC_DOT,
-                                   XXXXXXX, _______,      _______, XXXXXXX
+                                   _______, _______,      _______, _______
     ),
 
     [_FUN_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, _______, _______, _______, XXXXXXX,
+        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, DF(_DEF_), DF(_COLEMAK_), DF(_NERPS_), XXXXXXX,
         KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,       KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,
         _______, _______, _______, KC_F6,   _______,      _______, KC_F5,   _______, _______, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
@@ -64,6 +78,15 @@ combo_t key_combos[] = {
 
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 
+uint8_t combo_ref_from_layer(uint8_t layer){
+    switch (get_highest_layer(layer_state)){
+        case _COLEMAK_:
+        case _NERPS_:
+            return _DEF_;
+    }
+    return layer;  // important if default is not in case.
+}
+
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
         /* Enable def combo if def layer is enable */
@@ -78,13 +101,13 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
         case HM_A:
-        case HM_R:
         case HM_S:
-        case HM_T:
-        case HM_N:
-        case HM_E:
-        case HM_I:
-        case HM_O:
+        case HM_D:
+        case HM_F:
+        case HM_J:
+        case HM_K:
+        case HM_L:
+        case HM_P:
             return TAPPING_TERM + 30;
 
         default:
@@ -109,26 +132,26 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     if ((mods & ~MOD_MASK_SHIFT) == 0) {
         switch (keycode) {
             /* Short Cut */   /* w x z  e u */
-            case HM_A:  return MC_ND;       // a -> nd  *
+            case KC_A:  return MC_ND;       // a -> nd  *
             case KC_B:  return MC_LE;       // b -> le          ble / bility
             case KC_C:  return KC_S;        // c -> s   *
             case KC_D:  return KC_T;        // d -> t   .
-            case HM_E:  return KC_E;        // e -> _
+            case KC_E:  return KC_E;        // e -> _
             case KC_F:  return MC_OR;       // f -> or
             case KC_G:  return MC_HT;       // g -> ht  *
             case KC_H:  return KC_N;        // h -> n           hough
-            case HM_I:  return MC_ON;       // i -> on  *
+            case KC_I:  return MC_ON;       // i -> on  *
             case KC_J:  return KC_U;        // j -> u   .       ju>jn
             case KC_K:  return KC_N;        // k -> n   *
             case KC_L:  return KC_L;        // l -> l   *
             case KC_M:  return MC_ENT;      // m -> ent *
-            case HM_N:  return KC_L;        // n -> l   .       nu>nl>nk>nm>>nj>nh
-            case HM_O:  return KC_O;        // o -> o           ough / oul / oo
+            case KC_N:  return KC_L;        // n -> l   .       nu>nl>nk>nm>>nj>nh
+            case KC_O:  return KC_O;        // o -> o           ough / oul / oo
             case KC_P:  return KC_T;        // p -> t   .
             case KC_Q:  return MC_UE;       // q -> ue  *
-            case HM_R:  return KC_A;        // r -> a   *       for reducing redirects like raw/rat
-            case HM_S:  return KC_C;        // s -> c   *
-            case HM_T:  return MC_ION;      // t -> ion *
+            case KC_R:  return KC_A;        // r -> a   *       for reducing redirects like raw/rat
+            case KC_S:  return KC_C;        // s -> c   *
+            case KC_T:  return MC_ION;      // t -> ion *
             case KC_U:  return KC_U;        // u -> _
             case KC_V:  return MC_ER;       // v -> er
             case KC_W:  return KC_W;        // w ->
@@ -151,7 +174,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         }
     } else {
         switch (keycode) {
-            case HM_A:
+            case KC_A:
                 if ((mods & MOD_MASK_CTRL)) return C(KC_C);  // Ctrl+A -> Ctrl+C
             case KC_C:
                 if ((mods & MOD_MASK_CTRL)) return C(KC_V);  // Ctrl+C -> Ctrl+V
