@@ -4,9 +4,6 @@
 #include QMK_KEYBOARD_H
 #include "keycode.h"
 
-// Super key, for custom keybind
-#define Z(key) A(G(C(S(key))))
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF_] = LAYOUT(
         XXXXXXX, KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    XXXXXXX,
@@ -30,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NAV_] = LAYOUT(
-        XXXXXXX, _______, S(C(KC_TAB)), C(KC_TAB), _______,      _______, _______, _______, Z(KC_I), XXXXXXX,
+        XXXXXXX, _______, S(C(KC_TAB)), C(KC_TAB), _______,      _______, _______, _______, _______, XXXXXXX,
         C(KC_A), _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         C(KC_Z), KC_CUT,  KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
                                    _______, _______,      _______, _______
@@ -171,6 +168,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (record->event.pressed) {
         switch (keycode) {
             // String
+            case ST_WQ: SEND_STRING("wq"); return false; break;
             case ST_HMD: SEND_STRING("~/"); return false; break;
             case ST_PRNP: SEND_STRING("()"); return false; break;
             case ST_BRCP: SEND_STRING("[]"); return false; break;

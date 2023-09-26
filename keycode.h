@@ -15,6 +15,18 @@ enum layers_names {
 enum custom_keycodes {
     KEYCODE = SAFE_RANGE,
 
+    // String
+    ST_WQ,
+    ST_HMD,
+    ST_PRNP,
+    ST_PRNL,
+    ST_BRCP,
+    ST_BRCL,
+    ST_CBRP,
+    ST_CBRL,
+    ST_ABKP,
+    ST_ABKL,
+
     NAV_SPC = LT(_NAV_, KC_SPC),
     NUM_ENT = LT(_NUM_, KC_ENT),
 
@@ -30,14 +42,4 @@ enum custom_keycodes {
     NE_N = LALT_T(KC_N), NE_R = LGUI_T(KC_R), NE_T = LCTL_T(KC_T), NE_S = LSFT_T(KC_S),
     NE_H = RSFT_T(KC_H), NE_E = RCTL_T(KC_E), NE_I = RGUI_T(KC_I), NE_A = RALT_T(KC_A),
 
-    // String
-    ST_HMD,
-    ST_PRNP,
-    ST_PRNL,
-    ST_BRCP,
-    ST_BRCL,
-    ST_CBRP,
-    ST_CBRL,
-    ST_ABKP,
-    ST_ABKL,
 };
