@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUN_] = LAYOUT(
-        XXXXXXX, _______, _______, _______, QK_BOOT,      _______, TO(_DEF_), TO(_COLEMAK_), TO(_NERPS_), XXXXXXX,
+        XXXXXXX, KC_PSCR, _______, _______, QK_BOOT,      _______, TO(_DEF_), TO(_COLEMAK_), TO(_NERPS_), XXXXXXX,
         KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,       KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,
         _______, _______, _______, KC_F6,   _______,      _______, KC_F5,   _______, _______, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
