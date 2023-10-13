@@ -114,18 +114,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
 }
 
 
-#include "features/custom_shift_keys.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-    // {KC_COMM, KC_QUOT}, // Shift , is '
-    // {KC_DOT,  KC_DQUO}, // Shift . is "
-    {KC_UNDS, KC_SLSH}, // Shift _ is /
-};
-
-uint8_t NUM_CUSTOM_SHIFT_KEYS =
-    sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
-
-
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -147,8 +135,6 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_custom_shift_keys(keycode, record)) { return false; }
-
     switch (keycode) {
         // Tri Layer Implementation
         case NAV_SPC:
