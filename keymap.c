@@ -34,9 +34,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUM_] = LAYOUT(
-        XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  KC_TILD,      _______, KC_ASTR, KC_SLSH, KC_CIRC, XXXXXXX,
+        XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  KC_TILD,      ST_HELP, KC_ASTR, KC_SLSH, KC_CIRC, XXXXXXX,
         KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,       KC_AT,   KC_1,    KC_2,    KC_3,    KC_4,
-        KC_UNDS, KC_BSLS, KC_PERC, KC_6,    ST_HMD,       _______, KC_5,    KC_DLR,  KC_COMM, KC_DOT,
+        KC_UNDS, KC_BSLS, KC_PERC, KC_6,    ST_HMD,       ST_UPD,  KC_5,    KC_DLR,  KC_COMM, KC_DOT,
                                    _______, _______,      _______, _______
     ),
 
@@ -155,7 +155,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         switch (keycode) {
             // String
             case ST_WQ: SEND_STRING("wq"); return false; break;
+            case ST_HELP: SEND_STRING("--help"); return false; break;
             case ST_HMD: SEND_STRING("~/"); return false; break;
+            case ST_UPD: SEND_STRING("../"); return false; break;
             case ST_PRNP: SEND_STRING("()"); return false; break;
             case ST_BRCP: SEND_STRING("[]"); return false; break;
             case ST_CBRP: SEND_STRING("{}"); return false; break;

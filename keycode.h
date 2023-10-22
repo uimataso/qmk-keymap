@@ -17,7 +17,9 @@ enum custom_keycodes {
 
     // String
     ST_WQ,
+    ST_HELP,
     ST_HMD,
+    ST_UPD,
     ST_PRNP,
     ST_PRNL,
     ST_BRCP,
