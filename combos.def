@@ -10,9 +10,9 @@ COMB(DEF_INS,      KC_INS,                  HM_F, KC_G)
 COMB(DEF_CAPS,     QK_CAPS_WORD_TOGGLE,     HM_S, HM_F)
 
 COMB(DEF_COLN,     KC_COLN,                 HM_K, HM_L)              // :
-COMB(DEF_SLSH,     KC_SLSH,                 HM_S, HM_D)              // /
+COMB(DEF_SCLN,     KC_SCLN,                 HM_S, HM_D)              // ;
 COMB(DEF_WQ,       ST_WQ,                   KC_W, KC_E, KC_R)        // wq
-COMB(DEF_SCLN,     KC_SCLN,                 KC_X, KC_C)              // ;
+COMB(DEF_SLSH,     KC_SLSH,                 KC_X, KC_C)              // /
 COMB(DEF_EXLM,     KC_EXLM,                 KC_X, KC_C, KC_V)        // !
 COMB(DEF_QUES,     KC_QUES,                 KC_X,       KC_V)        // ?
 COMB(DEF_LPRN,     KC_LPRN,                 KC_U, KC_I)              // (
@@ -24,8 +24,11 @@ COMB(DEF_DLR,      KC_DLR,                        KC_QUOT, KC_COMM)  // $
 COMB(DEF_PIPE,     KC_PIPE,                 KC_M, KC_QUOT, KC_COMM)  // !
 COMB(DEF_AMPR,     KC_AMPR,                 KC_M,          KC_COMM)  // ?
 
-COMB(DEF_WM,       OSL(_WM_),               HM_S, HM_D, HM_F)
-COMB(DEF_WM,       OSL(_WM_),               HM_J, HM_K, HM_L)
+COMB(MOU_WHD,      KC_MS_WH_DOWN,           KC_MS_D, KC_MS_U)
+COMB(MOU_WHU,      KC_MS_WH_UP,             KC_MS_U, KC_MS_R)
+
+COMB(DEF_WM1,      OSL(_WM_),               HM_S, HM_D, HM_F)
+COMB(DEF_WM2,      OSL(_WM_),               HM_J, HM_K, HM_L)
 
 COMB(NUM_LPRN,     KC_LPRN,                 KC_ASTR, KC_SLSH)          // ( )
 COMB(NUM_RPRN,     KC_RPRN,                          KC_SLSH, KC_CIRC)
