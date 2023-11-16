@@ -30,9 +30,24 @@ enum custom_keycodes {
     ST_CBRL,
     ST_ABKP,
     ST_ABKL,
+};
 
+enum custom_keycodes_shortcut {
     NAV_SPC = LT(_NAV_, KC_SPC),
     NUM_ENT = LT(_NUM_, KC_ENT),
+
+    // Move one word
+    CK_LW = C(KC_LEFT),
+    CK_RW = C(KC_RIGHT),
+
+    // Move focus on browser tabs
+    CK_LTAB = C(S(KC_TAB)),
+    CK_RTAB = C(KC_TAB),
+
+    // Set different layout
+    TO_DEF = TO(_DEF_),
+    TO_COL = TO(_COLEMAK_),
+    TO_NER = TO(_NERPS_),
 
     // Home Row Mod
     HM_A = LALT_T(KC_A), HM_S = LGUI_T(KC_S), HM_D = LCTL_T(KC_D), HM_F = LSFT_T(KC_F),
@@ -71,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NAV_] = LAYOUT(
-        XXXXXXX, KC_BTN3, KC_BTN2, KC_BTN1, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
-        C(KC_A), _______, _______, _______, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        XXXXXXX, _______, CK_LTAB, CK_RTAB, _______,      CK_LW,   _______, _______, CK_RW,   XXXXXXX,
+        C(KC_A), _______, KC_PGDN, KC_PGUP, _______,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         C(KC_Z), KC_CUT,  KC_COPY, KC_PSTE, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
                                    _______, _______,      _______, _______
     ),
@@ -85,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUN_] = LAYOUT(
-        XXXXXXX, KC_PSCR, _______, _______, QK_BOOT,      _______, TO(_DEF_), TO(_COLEMAK_), TO(_NERPS_), XXXXXXX,
+        XXXXXXX, KC_PSCR, _______, _______, QK_BOOT,      _______, TO_DEF,  TO_COL,  TO_NER,  XXXXXXX,
         KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,       KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,
         _______, _______, _______, KC_F6,   _______,      _______, KC_F5,   _______, _______, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
