@@ -18,18 +18,8 @@ enum custom_keycodes {
     KEYCODE = SAFE_RANGE,
 
     // String
-    ST_WQ,
-    ST_HELP,
     ST_HMD,
     ST_UPD,
-    ST_PRNP,
-    ST_PRNL,
-    ST_BRCP,
-    ST_BRCL,
-    ST_CBRP,
-    ST_CBRL,
-    ST_ABKP,
-    ST_ABKL,
 };
 
 enum custom_keycodes_shortcut {
@@ -93,10 +83,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUM_] = LAYOUT(
-        XXXXXXX, KC_PLUS, KC_MINS, KC_EQL,  KC_TILD,      _______, KC_LBRC, KC_RBRC, KC_CIRC, XXXXXXX,
-        KC_PERC, KC_1,    KC_2,    KC_3,    KC_GRV,       _______, KC_LCBR, KC_RCBR, KC_ASTR, KC_SLSH,
-        KC_DLR,  KC_8,    KC_9,    KC_0,    KC_AT,        _______, KC_LABK, KC_RABK, KC_COMM, KC_DOT,
-                                   _______, _______,      _______, _______
+        XXXXXXX, KC_7,    KC_8,    KC_9,    KC_MINS,      KC_TILD, KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
+        KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS,      KC_GRV,  KC_LPRN, KC_RPRN, KC_CIRC, KC_PERC,
+        KC_SLSH, KC_1,    KC_2,    KC_3,    KC_EQL,       KC_AT,   KC_LBRC, KC_RBRC, KC_COMM, KC_DOT,
+                                   _______, KC_0,         _______, _______
     ),
 
     [_FUN_] = LAYOUT(
@@ -213,18 +203,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (record->event.pressed) {
         switch (keycode) {
             // String
-            case ST_WQ: SEND_STRING("wq"); return false; break;
-            case ST_HELP: SEND_STRING("--help"); return false; break;
             case ST_HMD: SEND_STRING("~/"); return false; break;
             case ST_UPD: SEND_STRING("../"); return false; break;
-            case ST_PRNP: SEND_STRING("()"); return false; break;
-            case ST_BRCP: SEND_STRING("[]"); return false; break;
-            case ST_CBRP: SEND_STRING("{}"); return false; break;
-            case ST_ABKP: SEND_STRING("<>"); return false; break;
-            case ST_PRNL: SEND_STRING("()"SS_TAP(X_LEFT)); return false; break;
-            case ST_BRCL: SEND_STRING("[]"SS_TAP(X_LEFT)); return false; break;
-            case ST_CBRL: SEND_STRING("{}"SS_TAP(X_LEFT)); return false; break;
-            case ST_ABKL: SEND_STRING("<>"SS_TAP(X_LEFT)); return false; break;
         }
     }
 
