@@ -37,20 +37,26 @@ enum custom_keycodes_shortcut {
     HM_A = LGUI_T(KC_A), HM_S = LALT_T(KC_S), HM_D = LCTL_T(KC_D), HM_F = LSFT_T(KC_F),
     HM_J = RSFT_T(KC_J), HM_K = RCTL_T(KC_K), HM_L = RALT_T(KC_L), HM_P = RGUI_T(KC_P),
 
+    NA_V = LT(_NAV_, KC_V),
+
+    S_LEFT = S(KC_LEFT),
+    S_DOWN = S(KC_DOWN),
+    S_UP   = S(KC_UP),
+    S_RGHT = S(KC_RGHT),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF_] = LAYOUT(
         XXXXXXX, KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    XXXXXXX,
         HM_A,    HM_S,    HM_D,    HM_F,    KC_G,         KC_H,    HM_J,    HM_K,    HM_L,    HM_P,
-        KC_UNDS, KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M,    KC_SLSH, KC_COMM, KC_DOT,
+        KC_UNDS, KC_X,    KC_C,    NA_V,    KC_B,         KC_N,    KC_M,    KC_SLSH, KC_COMM, KC_DOT,
                                    _______, SYM_SPC,      NUM_ENT, _______
     ),
 
     [_SYM_] = LAYOUT(
         XXXXXXX, KC_HASH, KC_LT,   KC_GT,   KC_TILD,      KC_PIPE, KC_LCBR, KC_RCBR, KC_COLN, XXXXXXX,
-        KC_SCLN, KC_DLR,  KC_QUES, KC_EXLM, KC_GRV,       KC_AMPR, KC_LPRN, KC_RPRN, KC_DQUO, KC_QUOT,
-        _______, KC_CUT,  KC_COPY, KC_PSTE, KC_AT,        _______, KC_LBRC, KC_RBRC, KC_HASH, KC_BSLS,
+        KC_CIRC, KC_DLR,  KC_QUES, KC_EXLM, KC_GRV,       KC_AMPR, KC_LPRN, KC_RPRN, KC_SCLN, KC_PERC,
+        C(KC_Z), C(KC_X), C(KC_C), C(KC_V), KC_AT,        _______, KC_LBRC, KC_RBRC, KC_HASH, KC_BSLS,
                                    _______, _______,      _______, _______
     ),
 
@@ -64,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV_] = LAYOUT(
         XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F10,       KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX,
         KC_PSCR, KC_F4,   KC_F5,   KC_F6,   KC_F11,       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F12,       _______, _______, _______, ST_VIM_CONF, _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F12,       S_LEFT,  S_DOWN,  S_UP,    S_RGHT, _______,
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
