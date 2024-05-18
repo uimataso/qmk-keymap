@@ -1,5 +1,5 @@
 
-// $ qmk flash -kb ferris/sweep -km uima -e CONVERT_TO=promicro_rp2040
+// $ qmk flash -kb ferris/sweep -km uima-keymap -e CONVERT_TO=promicro_rp2040
 
 #include QMK_KEYBOARD_H
 
@@ -15,7 +15,7 @@ enum custom_keycodes {
     KEYCODE = SAFE_RANGE,
 
     // String
-    ST_VIM_CONF,
+    ST_HELP,
 };
 
 enum custom_keycodes_shortcut {
@@ -54,16 +54,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_SYM_] = LAYOUT(
-        XXXXXXX, KC_HASH, KC_LT,   KC_GT,   KC_TILD,      KC_PIPE, KC_LCBR, KC_RCBR, KC_COLN, XXXXXXX,
-        KC_CIRC, KC_DLR,  KC_QUES, KC_EXLM, KC_GRV,       KC_AMPR, KC_LPRN, KC_RPRN, KC_SCLN, KC_PERC,
-        C(KC_Z), C(KC_X), C(KC_C), C(KC_V), KC_AT,        _______, KC_LBRC, KC_RBRC, KC_HASH, KC_BSLS,
+        XXXXXXX, KC_HASH, KC_LT,   KC_GT,   KC_TILD,      KC_CIRC, KC_RCBR, KC_LCBR, KC_DLR,  XXXXXXX,
+        KC_CIRC, KC_DLR,  KC_QUES, KC_EXLM, KC_GRV,       KC_AMPR, KC_RPRN, KC_LPRN, KC_SCLN, KC_PERC,
+        C(KC_Z), C(KC_X), C(KC_C), C(KC_V), KC_AT,        _______, KC_RBRC, KC_LBRC, KC_HASH, KC_BSLS,
                                    _______, _______,      _______, _______
     ),
 
     [_NUM_] = LAYOUT(
-        XXXXXXX, KC_7,    KC_8,    KC_9,    KC_TILD,      KC_PIPE, KC_PERC, KC_ASTR, KC_SLSH, XXXXXXX,
-        KC_GT,   KC_4,    KC_5,    KC_6,    KC_0,         KC_AMPR, KC_PLUS, KC_MINS, KC_EQL,  KC_CIRC,
-        KC_LT,   KC_1,    KC_2,    KC_3,    KC_EXLM,      _______, KC_LBRC, KC_RBRC, KC_COMM, KC_DOT,
+        XXXXXXX, KC_7,    KC_8,    KC_9,    KC_TILD,      KC_PIPE, KC_CIRC, KC_ASTR, KC_SLSH, XXXXXXX,
+        KC_GT,   KC_4,    KC_5,    KC_6,    KC_0,         KC_AMPR, KC_PLUS, KC_MINS, KC_EQL,  KC_PERC,
+        KC_LT,   KC_1,    KC_2,    KC_3,    KC_EXLM,      _______, KC_RBRC, KC_LBRC, KC_COMM, KC_DOT,
                                    _______, _______,      _______, _______
     ),
 
@@ -162,7 +162,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-            case ST_VIM_CONF: SEND_STRING(":set nu rnu scs sm"SS_TAP(X_ENT)); return false; break;
+            case ST_HELP: SEND_STRING(" --help"); return false; break;
         }
     }
 

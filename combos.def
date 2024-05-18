@@ -15,20 +15,21 @@ COMB(DEF_MINS,     KC_MINS,                       KC_I, KC_O)        // -
 
 COMB(DEF_Q,        KC_Q,                    KC_W, KC_E)              // Q
 COMB(DEF_TAB,      KC_TAB,                        KC_E, KC_R)        // TAB
+COMB(DEF_HELP,     ST_HELP,                 KC_W, KC_E, KC_R)        // --help
 
 COMB(DEF_QUOT,     KC_QUOT,                 KC_M, KC_SLSH)           // '
 COMB(DEF_SCLN,     KC_SCLN,                       KC_SLSH, KC_COMM)  // ;
 COMB(DEF_PIPE,     KC_PIPE,                 KC_M, KC_SLSH, KC_COMM)  // |
 COMB(DEF_AMPR,     KC_AMPR,                 KC_M,          KC_COMM)  // &
 
-COMB(DEF_DQUO,     KC_DQUO,                 KC_X, KC_C)              // "
+COMB(DEF_TMUX,     C(KC_B),                 KC_X, KC_C)              // Ctrl-B
 COMB(DEF_Z,        KC_Z,                          KC_C, NA_V)        // Z
 COMB(DEF_EXLM,     KC_EXLM,                 KC_X, KC_C, NA_V)        // !
 COMB(DEF_QUES,     KC_QUES,                 KC_X,       NA_V)        // ?
 
 
 COMB(NUM_BS,       KC_BSPC,                 KC_PLUS, KC_MINS)
-COMB(SYM_BS,       KC_BSPC,                 KC_LPRN, KC_RPRN)
+COMB(SYM_BS,       KC_BSPC,                 KC_RPRN, KC_LPRN)
 COMB(NAV_BS,       KC_BSPC,                 KC_UP, KC_DOWN)
 COMB(NUM_ESC,      KC_ESC,                  KC_5, KC_6)
 COMB(SYM_ESC,      KC_ESC,                  KC_QUES, KC_EXLM)
