@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    XXXXXXX,
         HM_A,    HM_S,    HM_D,    HM_F,    KC_G,         KC_H,    HM_J,    HM_K,    HM_L,    HM_P,
         KC_UNDS, KC_X,    KC_C,    NA_V,    KC_B,         KC_N,    KC_M,    KC_SLSH, KC_COMM, KC_DOT,
-                                   _______, SYM_SPC,      NUM_ENT, _______
+                        OSM(MOD_LCTL), SYM_SPC,      NUM_ENT, OSM(MOD_LSFT)
     ),
 
     [_SYM_] = LAYOUT(

@@ -8,6 +8,7 @@ COMB(DEF_DEL,      KC_DEL,                  KC_H, HM_J)              // DEL
 COMB(DEF_NAV,      MO(_NAV_),               HM_S, HM_D)              // OSL NAV
 COMB(DEF_ESC,      KC_ESC,                        HM_D, HM_F)        // ESC
 COMB(DEF_CAP_WORD, QK_CAPS_WORD_TOGGLE,     HM_S,       HM_F)        // Cap word
+COMB(DEF_CTRL_B,   C(KC_B),                 HM_S, HM_D, HM_F)        // C-B (tmux)
 COMB(DEF_INS,      KC_INS,                  HM_F, KC_G)              // INS
 
 COMB(DEF_EQL,      KC_EQL,                  KC_U, KC_I)              // =
@@ -22,7 +23,7 @@ COMB(DEF_SCLN,     KC_SCLN,                       KC_SLSH, KC_COMM)  // ;
 COMB(DEF_PIPE,     KC_PIPE,                 KC_M, KC_SLSH, KC_COMM)  // |
 COMB(DEF_AMPR,     KC_AMPR,                 KC_M,          KC_COMM)  // &
 
-COMB(DEF_TMUX,     C(KC_B),                 KC_X, KC_C)              // Ctrl-B
+COMB(DEF_DQUO,     KC_DQUO,                 KC_X, KC_C)              // "
 COMB(DEF_Z,        KC_Z,                          KC_C, NA_V)        // Z
 COMB(DEF_EXLM,     KC_EXLM,                 KC_X, KC_C, NA_V)        // !
 COMB(DEF_QUES,     KC_QUES,                 KC_X,       NA_V)        // ?
