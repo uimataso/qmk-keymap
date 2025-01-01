@@ -1,14 +1,14 @@
-
-// $ qmk flash -kb ferris/sweep -km uima-keymap -e CONVERT_TO=promicro_rp2040
+// $ qmk flash -kb ferris/sweep -km uima-keymap -e CONVERT_TO=promicro_rp2039
 
 #include QMK_KEYBOARD_H
 
+// clang-format off
 enum layers_names {
     _DEF_,
-
     _SYM_,
     _NUM_,
     _NAV_,
+    _FUN_,
 };
 
 enum custom_keycodes {
@@ -50,13 +50,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    XXXXXXX,
         HM_A,    HM_S,    HM_D,    HM_F,    KC_G,         KC_H,    HM_J,    HM_K,    HM_L,    HM_P,
         KC_UNDS, KC_X,    KC_C,    NA_V,    KC_B,         KC_N,    KC_M,    KC_SLSH, KC_COMM, KC_DOT,
-                        OSM(MOD_LCTL), SYM_SPC,      NUM_ENT, OSM(MOD_LSFT)
+                                 MO(_NAV_), SYM_SPC,      NUM_ENT, OSM(MOD_LSFT)
     ),
 
     [_SYM_] = LAYOUT(
-        XXXXXXX, KC_HASH, KC_LT,   KC_GT,   KC_TILD,      KC_CIRC, KC_RCBR, KC_LCBR, KC_DLR,  XXXXXXX,
-        KC_CIRC, KC_DLR,  KC_QUES, KC_EXLM, KC_GRV,       KC_AMPR, KC_RPRN, KC_LPRN, KC_SCLN, KC_PERC,
-        C(KC_Z), C(KC_X), C(KC_C), C(KC_V), KC_AT,        _______, KC_RBRC, KC_LBRC, KC_HASH, KC_BSLS,
+        XXXXXXX, KC_TILD, KC_LT,   KC_GT,   KC_TILD,      KC_CIRC, KC_LCBR, KC_RCBR, KC_DLR,  XXXXXXX,
+        KC_CIRC, KC_DLR,  KC_QUES, KC_EXLM, KC_GRV,       KC_AMPR, KC_LPRN, KC_RPRN, KC_SCLN, KC_PERC,
+        KC_UNDS, C(KC_X), C(KC_C), C(KC_V), KC_AT,        _______, KC_LBRC, KC_RBRC, KC_HASH, KC_BSLS,
                                    _______, _______,      _______, _______
     ),
 
@@ -74,7 +74,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    XXXXXXX, _______,      _______, XXXXXXX
     ),
 
+    [_FUN_] = LAYOUT(
+        XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F10,       KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX,
+        KC_PSCR, KC_F4,   KC_F5,   KC_F6,   KC_F11,       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F12,       S_LEFT,  S_DOWN,  S_UP,    S_RGHT, _______,
+                                   XXXXXXX, _______,      _______, XXXXXXX
+    ),
 };
+
+// clang-format on
 
 /* Create Combos */
 #undef COMB
@@ -95,8 +103,8 @@ combo_t key_combos[] = {
 
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(*key_combos);
 
-uint8_t combo_ref_from_layer(uint8_t layer){
-    return layer;  // important if default is not in case.
+uint8_t combo_ref_from_layer(uint8_t layer) {
+    return layer; // important if default is not in case.
 }
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
@@ -109,25 +117,11 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     return false;
 }
 
-
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        // HMR for Qwerty
-        case HM_A: case HM_S: case HM_D: case HM_F:
-        case HM_J: case HM_K: case HM_L: case HM_P:
-            return TAPPING_TERM + 20;
-
-        default:
-            return TAPPING_TERM;
-    }
-}
-
-
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
         case KC_A ... KC_Z:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
             return true;
 
         // Keycodes that continue Caps Word, without shifting.
@@ -139,31 +133,38 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
 
         default:
-            return false;  // Deactivate Caps Word.
+            return false; // Deactivate Caps Word.
     }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // Tri Layer Implementation
         case SYM_SPC:
-            if (record->event.pressed) layer_on(_NAV_);
-            else layer_off(_NAV_);
-            update_tri_layer(_SYM_, _NUM_, _NAV_);
+            if (record->event.pressed)
+                layer_on(_FUN_);
+            else
+                layer_off(_FUN_);
+            update_tri_layer(_SYM_, _NUM_, _FUN_);
             // return false;
             return true;
         case NUM_ENT:
-            if (record->event.pressed) layer_on(_NUM_);
-            else layer_off(_NUM_);
-            update_tri_layer(_SYM_, _NUM_, _NAV_);
+            if (record->event.pressed)
+                layer_on(_NUM_);
+            else
+                layer_off(_NUM_);
+            update_tri_layer(_SYM_, _NUM_, _FUN_);
             // return false;
             return true;
     }
 
     if (record->event.pressed) {
+        // clang-format off
         switch (keycode) {
-            case ST_HELP: SEND_STRING(" --help"); return false; break;
+            case ST_HELP:
+                SEND_STRING(" --help"); return false; break;
         }
+        // clang-format on
     }
 
     return true;
